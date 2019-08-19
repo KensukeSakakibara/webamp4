@@ -1,0 +1,25 @@
+{
+  "master": {
+    "dialect": "mysql",
+    "username": "Please enter database username here",
+    "password": "Please enter database password here",
+    "protocol": "tcp(127.0.0.1:3306)",
+    "database": "Please enter database name here"
+  },
+  "slaves": [
+    {
+      "dialect": "mysql",
+      "username": "Please enter database username here",
+      "password": "Please enter database password here",
+      "protocol": "tcp(127.0.0.1:3306)",
+      "database": "Please enter database name here"
+    },
+    {
+      "dialect": "mysql",
+      "username": "Please enter database username here",
+      "password": "Please enter database password here",
+      "protocol": "tcp(127.0.0.1:3306)",
+      "database": "Please enter database name here"
+    }
+  ]
+}
