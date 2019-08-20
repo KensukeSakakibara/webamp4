@@ -9,14 +9,14 @@ import (
 	//"os"
 	//"path/filepath"
 
-	"github.com/KensukeSakakibara/webamp4/infrastructure"
 	"github.com/KensukeSakakibara/webamp4/domain/model"
+	"github.com/KensukeSakakibara/webamp4/infrastructure"
 )
 
 func connectGorm() *gorm.DB {
 	// コンフィグの読み込み
-	dbconfig := config.GetConfig();
-	
+	dbconfig := config.GetConfig()
+
 	// DB接続
 	connect := fmt.Sprintf("%s:%s@%s/%s?parseTime=true", dbconfig.Master.Username, dbconfig.Master.Password, dbconfig.Master.Protocol, dbconfig.Master.Database)
 	db, err := gorm.Open(dbconfig.Master.Dialect, connect)
