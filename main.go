@@ -1,12 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
-	"log"
-
-	"github.com/KensukeSakakibara/webamp4/domain/model"
-	"github.com/KensukeSakakibara/webamp4/infrastructure/config"
+	"github.com/KensukeSakakibara/webamp4/infrastructure/persistence/database"
 )
 
 func main() {

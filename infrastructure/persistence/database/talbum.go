@@ -9,7 +9,7 @@ import (
 )
 
 type TAlbumRepository struct {
-	*Db
+	db *gorm.DB
 }
 
 func NewTAlbumRepository() repository.TAlbumRepository {
@@ -34,5 +34,5 @@ func NewDb() *gorm.DB {
 
 func (r *TAlbumRepository) GetRowById(id int) (*model.TAlbum, error) {
 	var talbum model.TAlbum
-	r.Db.Find(&talbum, "id = ?", id)
+	r.db.Find(&talbum, "id = ?", id)
 }
