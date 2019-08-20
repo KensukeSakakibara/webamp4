@@ -38,5 +38,5 @@ func NewDb() *gorm.DB {
 func (r *TAlbumRepository) GetRowById(id int) (*model.TAlbum, error) {
 	var talbum model.TAlbum
 	r.db.Find(&talbum, "id = ?", id)
-	return &talbum;
+	return &talbum, nil
 }
