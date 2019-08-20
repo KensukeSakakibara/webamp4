@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-type TAlbums struct {
+type TAlbum struct {
 	ID           int        `json:"id"`                                    // id
 	UserId       int        `json:"user_id"`                               // user_id
 	OrderNum     int        `json:"order_num"`                             // order_num
