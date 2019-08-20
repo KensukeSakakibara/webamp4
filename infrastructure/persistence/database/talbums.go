@@ -11,5 +11,5 @@ type TAlbumsRepository struct {
 
 func NewTAlbumsRepository() repository.TAlbumsRepository {
 	db := NewDb()
-	return &TDatabaseRepository{db}
+	return &TAlbumsRepository{db}
 }
