@@ -1,11 +1,14 @@
 package database
 
 import (
+	"fmt"
+	"log"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 
 	"github.com/KensukeSakakibara/webamp4/domain/model"
 	"github.com/KensukeSakakibara/webamp4/domain/repository"
+	"github.com/KensukeSakakibara/webamp4/infrastructure/config"
 )
 
 type TAlbumRepository struct {
@@ -35,4 +38,5 @@ func NewDb() *gorm.DB {
 func (r *TAlbumRepository) GetRowById(id int) (*model.TAlbum, error) {
 	var talbum model.TAlbum
 	r.db.Find(&talbum, "id = ?", id)
+	return &talbum;
 }
