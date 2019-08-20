@@ -9,7 +9,7 @@ import (
 	//"os"
 	//"path/filepath"
 
-	"github.com/KensukeSakakibara/webamp4/infrastructure/config"
+	"github.com/KensukeSakakibara/webamp4/infrastructure"
 	"github.com/KensukeSakakibara/webamp4/domain/model"
 )
 
