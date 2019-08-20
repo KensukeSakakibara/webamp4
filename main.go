@@ -9,9 +9,12 @@ func main() {
 	router := gin.Default()
 	router.LoadHTMLGlob("templates/*.html")
 
-	talbumRepo := NewTAlbumRepository()
-	talbum := talbumRepo.GetRowById(1)
-
+	talbumRepo := database.NewTAlbumRepository()
+	talbum, err := talbumRepo.GetRowById(1)
+	if err != nil {
+		return
+	}
+	
 	router.GET("/", func(ctx *gin.Context) {
 		ctx.HTML(200, "index.html", gin.H{"data": talbum.Name})
 	})

@@ -17,7 +17,6 @@ type TAlbumRepository struct {
 
 func NewTAlbumRepository() repository.TAlbumRepository {
 	db := NewDb()
-	defer db.Close()
 	return &TAlbumRepository{db}
 }
 
