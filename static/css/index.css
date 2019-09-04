@@ -1,0 +1,38 @@
+:root {
+  --main-width: 500px;
+}
+
+header > section, footer > section {
+  width: var(--main-width);
+}
+
+article.main-content > section {
+  width: var(--main-width);
+  padding: 60px 0;
+}
+
+dl > dt {
+  margin-top: 10px;
+}
+
+dl > dt:first-child {
+  margin-top: 0;
+}
+
+div.ui-buttons {
+  margin-top: 10px;
+  text-align: right;
+}
+
+section.top > h1 {
+  font-size: 150%;
+  margin-bottom: 15px;
+}
+
+section.top > p.message {
+  font-size: 120%;
+}
+
+section.top > p.logout {
+  margin-top: 30px;
+}

@@ -1,0 +1,88 @@
+:root {
+  --main-width: 1000px;
+  --main-font-color: #555;
+  --header-bg-color: #DDD;
+  --content-bg-color: #FFF;
+  --footer-bg-color: #CCC;
+  --border-color: #CCC;
+  --placeholder-color: #999;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: var(--footer-bg-color);
+  color: var(--main-font-color);
+  font-family: "M PLUS 1p";
+}
+
+header {
+  background-color: var(--header-bg-color);
+}
+
+article.main-content {
+  background-color: var(--content-bg-color);
+}
+
+footer {
+  background-color: var(--footer-bg-color);
+}
+
+header > section, article.main-content > section, footer > section {
+  margin: 0 auto;
+  padding: 20px 0;
+  width: var(--main-width);
+}
+
+footer > section {
+  text-align: center;
+}
+
+h1 {
+  font-size: 200%;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  margin: 5px 0;
+}
+
+input::placeholder {
+  color: var(--placeholder-color);
+}
+
+input:-ms-input-placeholder {
+  color: var(--placeholder-color);
+}
+
+input::-ms-input-placeholder {
+  color: var(--placeholder-color);
+}
+
+textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  margin: 5px 0;
+  resize: none;
+  line-height: 1.3em;
+}
+
+button {
+  padding: 8px 14px;
+  border-radius: 5px;
+  border: 1px solid var(--border-color);
+  margin: 5px 0;
+  background-color: #FFF;
+  cursor: pointer;
+}

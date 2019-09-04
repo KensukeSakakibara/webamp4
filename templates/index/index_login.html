@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/reset.css">
+        <link rel="stylesheet" href="/static/css/common.css">
+        <link rel="stylesheet" href="/static/css/index.css">
+        <title>Gin Gorm Skeleton</title>
+    </head>
+    <body>
+        <header>
+            <section>
+                <h1>Gin Gorm Skeleton</h1>
+            </section>
+        </header>
+        <article class="main-content">
+            <section>
+                <form action="/" method="post">
+                    <dl>
+                        <dt>E-mail</dt>
+                        <dd><input type="email" name="email" value="{{.data.Email}}" placeholder="Please input your E-mail address"></dd>
+                        <dt>Password</dt>
+                        <dd><input type="password" name="password" value="" placeholder="Please input your password"></dd>
+                    </dl>
+                    <div class="ui-buttons">
+                        <button type="submit" name="login_btn" value="1">Login</button>
+                    </div>
+                </form>
+            </section>
+        </article>
+        <footer>
+            <section>
+                <p>Copyright &copy; 2019 Kensuke Sakakibara</p>
+            </section>
+        </footer>
+    </body>
+</html>

@@ -1,23 +1,26 @@
+/*
+main.go
+@import github.com/KensukeSakakibara/gin_gorm_skeleton
+@author Kensuke Sakakibara
+@since 2019.08.28
+@copyright Copyright (c) 2019 Kensuke Sakakibara
+*/
 package main
 
 import (
-	"github.com/gin-gonic/gin"
-	"github.com/KensukeSakakibara/webamp4/infrastructure/persistence/database"
+	"github.com/KensukeSakakibara/gin_gorm_skeleton/registry"
 )
 
 func main() {
-	router := gin.Default()
-	router.LoadHTMLGlob("templates/*.html")
+	// DBマイグレーション
+	migrationInterface := registry.DiMigration()
+	migrationInterface.Run()
 
-	talbumRepo := database.NewTAlbumRepository()
-	talbum, err := talbumRepo.GetRowById(1)
-	if err != nil {
-		return
-	}
-	
-	router.GET("/", func(ctx *gin.Context) {
-		ctx.HTML(200, "index.html", gin.H{"data": talbum.Name})
-	})
+	// アプリケーションの初期化
+	initInterface := registry.DiInit()
+	initInterface.Run()
 
-	router.Run(":33333")
+	// アプリ実行
+	routerInterface := registry.DiRouter()
+	routerInterface.Run()
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+1p" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/reset.css">
+        <link rel="stylesheet" href="/static/css/common.css">
+        <link rel="stylesheet" href="/static/css/index.css">
+        <title>Gin Gorm Skeleton</title>
+    </head>
+    <body>
+        <header>
+            <section>
+                <h1>Gin Gorm Skeleton</h1>
+            </section>
+        </header>
+        <article class="main-content">
+            <section class="top">
+                <h1>Hello {{.data.Operator.Name}}!!</h1>
+                <p class="message">You are now logged in.</p>
+                <p class="logout"><a href="/index/logout">Logout</a></p>
+            </section>
+        </article>
+        <footer>
+            <section>
+                <p>Copyright &copy; 2019 Kensuke Sakakibara</p>
+            </section>
+        </footer>
+    </body>
+</html>

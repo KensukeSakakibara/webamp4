@@ -1,0 +1,9 @@
+{
+  "application_port": "44444",
+  "session_name": "webamp4",
+  "redis_host": "localhost:6379",
+  "redis_password": "",
+  "admin_email": "admin@example.com",
+  "admin_password": "password",
+  "admin_name": "WEBAMP ADMIN"
+}
