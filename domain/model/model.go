@@ -1,6 +1,6 @@
 /*
 model.go
-@import github.com/KensukeSakakibara/gin_gorm_skeleton/domain/model
+@import github.com/KensukeSakakibara/webamp4/domain/model
 @author Kensuke Sakakibara
 @since 2019.08.29
 @copyright Copyright (c) 2019 Kensuke Sakakibara

@@ -1,6 +1,6 @@
 /*
 registry.go
-@package github.com/KensukeSakakibara/gin_gorm_skeleton/registry
+@package github.com/KensukeSakakibara/webamp4/registry
 @author Kensuke Sakakibara
 @since 2019.08.29
 @copyright Copyright (c) 2019 Kensuke Sakakibara
@@ -9,14 +9,14 @@ registry.go
 package registry
 
 import (
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/application/usecase"
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/domain/model"
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/domain/repository"
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/infrastructure/config"
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/infrastructure/persistence/session"
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/infrastructure/persistence/table"
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/presentation/app"
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/presentation/app/router"
+	"github.com/KensukeSakakibara/webamp4/application/usecase"
+	"github.com/KensukeSakakibara/webamp4/domain/model"
+	"github.com/KensukeSakakibara/webamp4/domain/repository"
+	"github.com/KensukeSakakibara/webamp4/infrastructure/config"
+	"github.com/KensukeSakakibara/webamp4/infrastructure/persistence/session"
+	"github.com/KensukeSakakibara/webamp4/infrastructure/persistence/table"
+	"github.com/KensukeSakakibara/webamp4/presentation/app"
+	"github.com/KensukeSakakibara/webamp4/presentation/app/router"
 	"github.com/gin-gonic/contrib/sessions"
 )
 

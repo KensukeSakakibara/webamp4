@@ -1,6 +1,6 @@
 /*
 session.go
-@import github.com/KensukeSakakibara/gin_gorm_skeleton/infrastructure/persistence/session
+@import github.com/KensukeSakakibara/webamp4/infrastructure/persistence/session
 @author Kensuke Sakakibara
 @since 2019.08.28
 @copyright Copyright (c) 2019 Kensuke Sakakibara

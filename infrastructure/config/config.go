@@ -1,6 +1,6 @@
 /*
 config.go
-@import github.com/KensukeSakakibara/gin_gorm_skeleton/infrastructure/config
+@import github.com/KensukeSakakibara/webamp4/infrastructure/config
 @author Kensuke Sakakibara
 @since 2019.08.28
 @copyright Copyright (c) 2019 Kensuke Sakakibara

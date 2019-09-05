@@ -1,6 +1,6 @@
 /*
 main.go
-@import github.com/KensukeSakakibara/gin_gorm_skeleton
+@import github.com/KensukeSakakibara/webamp4
 @author Kensuke Sakakibara
 @since 2019.08.28
 @copyright Copyright (c) 2019 Kensuke Sakakibara
@@ -8,7 +8,7 @@ main.go
 package main
 
 import (
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/registry"
+	"github.com/KensukeSakakibara/webamp4/registry"
 )
 
 func main() {

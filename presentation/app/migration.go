@@ -1,6 +1,6 @@
 /*
 migration.go
-@package github.com/KensukeSakakibara/gin_gorm_skeleton/interfaces/app
+@package github.com/KensukeSakakibara/webamp4/interfaces/app
 @author Kensuke Sakakibara
 @since 2019.08.28
 @copyright Copyright (c) 2019 Kensuke Sakakibara
@@ -10,7 +10,7 @@ migration.go
 package app
 
 import (
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/infrastructure/persistence/table"
+	"github.com/KensukeSakakibara/webamp4/infrastructure/persistence/table"
 )
 
 // インターフェイス定義

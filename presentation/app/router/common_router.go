@@ -1,6 +1,6 @@
 /*
 common_router.go
-@package github.com/KensukeSakakibara/gin_gorm_skeleton/interfaces/app/router
+@package github.com/KensukeSakakibara/webamp4/interfaces/app/router
 @author Kensuke Sakakibara
 @since 2019.09.02
 @copyright Copyright (c) 2019 Kensuke Sakakibara
@@ -10,7 +10,7 @@ package router
 
 import (
 	"fmt"
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/domain/repository"
+	"github.com/KensukeSakakibara/webamp4/domain/repository"
 	"github.com/gin-gonic/gin"
 )
 

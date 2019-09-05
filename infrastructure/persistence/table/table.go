@@ -1,6 +1,6 @@
 /*
 table.go
-@import github.com/KensukeSakakibara/gin_gorm_skeleton/infrastructure/persistence/table
+@import github.com/KensukeSakakibara/webamp4/infrastructure/persistence/table
 @author Kensuke Sakakibara
 @since 2019.08.28
 @copyright Copyright (c) 2019 Kensuke Sakakibara
@@ -11,7 +11,7 @@ package table
 
 import (
 	"fmt"
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/infrastructure/config"
+	"github.com/KensukeSakakibara/webamp4/infrastructure/config"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"log"

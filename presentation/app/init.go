@@ -1,6 +1,6 @@
 /*
 init.go
-@package github.com/KensukeSakakibara/gin_gorm_skeleton/interfaces/app
+@package github.com/KensukeSakakibara/webamp4/interfaces/app
 @author Kensuke Sakakibara
 @since 2019.08.28
 @copyright Copyright (c) 2019 Kensuke Sakakibara
@@ -9,8 +9,8 @@ init.go
 package app
 
 import (
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/domain/model"
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/infrastructure/config"
+	"github.com/KensukeSakakibara/webamp4/domain/model"
+	"github.com/KensukeSakakibara/webamp4/infrastructure/config"
 )
 
 // インターフェイス定義

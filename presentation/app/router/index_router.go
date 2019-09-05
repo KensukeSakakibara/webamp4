@@ -1,6 +1,6 @@
 /*
 index_router.go
-@package github.com/KensukeSakakibara/gin_gorm_skeleton/interfaces/app/router
+@package github.com/KensukeSakakibara/webamp4/interfaces/app/router
 @author Kensuke Sakakibara
 @since 2019.08.30
 @copyright Copyright (c) 2019 Kensuke Sakakibara
@@ -9,7 +9,7 @@ index_router.go
 package router
 
 import (
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/application/usecase"
+	"github.com/KensukeSakakibara/webamp4/application/usecase"
 	"github.com/gin-gonic/gin"
 )
 

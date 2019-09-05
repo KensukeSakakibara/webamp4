@@ -1,6 +1,6 @@
 /*
 router.go
-@package github.com/KensukeSakakibara/gin_gorm_skeleton/interfaces/app/router
+@package github.com/KensukeSakakibara/webamp4/interfaces/app/router
 @author Kensuke Sakakibara
 @since 2019.08.28
 @copyright Copyright (c) 2019 Kensuke Sakakibara
@@ -9,7 +9,7 @@ router.go
 package router
 
 import (
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/infrastructure/config"
+	"github.com/KensukeSakakibara/webamp4/infrastructure/config"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 )

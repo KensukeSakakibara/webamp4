@@ -1,6 +1,6 @@
 /*
 table_repository.go
-@import github.com/KensukeSakakibara/gin_gorm_skeleton/domain/repository
+@import github.com/KensukeSakakibara/webamp4/domain/repository
 @author Kensuke Sakakibara
 @since 2019.09.03
 @copyright Copyright (c) 2019 Kensuke Sakakibara
@@ -9,7 +9,7 @@ table_repository.go
 package repository
 
 import (
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/infrastructure/persistence/table"
+	"github.com/KensukeSakakibara/webamp4/infrastructure/persistence/table"
 )
 
 // インターフェイス定義

@@ -1,6 +1,6 @@
 /*
 index_usecase.go
-@import github.com/KensukeSakakibara/gin_gorm_skeleton/application/usecase
+@import github.com/KensukeSakakibara/webamp4/application/usecase
 @author Kensuke Sakakibara
 @since 2019.08.28
 @copyright Copyright (c) 2019 Kensuke Sakakibara
@@ -10,8 +10,8 @@ index_usecase.go
 package usecase
 
 import (
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/domain/model"
-	"github.com/KensukeSakakibara/gin_gorm_skeleton/domain/repository"
+	"github.com/KensukeSakakibara/webamp4/domain/model"
+	"github.com/KensukeSakakibara/webamp4/domain/repository"
 	"github.com/gin-gonic/gin"
 	"strconv"
 )
