@@ -1,0 +1,25 @@
+{
+  "name": "webamp4",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --colors --config ./webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KensukeSakakibara/webamp4"
+  },
+  "author": "Kensuke Sakakibara",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.2",
+    "@types/react-dom": "^16.9.0",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.6.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}
