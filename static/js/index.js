@@ -29394,12 +29394,11 @@ var MyComponent = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     MyComponent.prototype.render = function () {
-        return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null,
-            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("article", { className: "main-content" },
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("section", { className: "top" },
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", null, this.props.content),
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", { className: "logout" },
-                        react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("a", { href: "/index/logout" }, "Logout"))))));
+        return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("article", { className: "main-content" },
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("section", { className: "top" },
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", null, this.props.content),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", { className: "logout" },
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("a", { href: "/index/logout" }, "Logout")))));
     };
     return MyComponent;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]));
