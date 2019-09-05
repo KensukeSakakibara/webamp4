@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export interface Props {
-  content: string;
+  content: string
 }
 
 export default class MyComponent extends React.Component<Props, {}> {

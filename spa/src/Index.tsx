@@ -1,17 +1,15 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import Header from "./components/common/Header";
-import Footer from "./components/common/Footer";
-import Content from "./components/index/Content";
+import * as React from 'react'
+import * as ReactDOM from 'react-dom'
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+import { indexReducer } from "./reducers/IndexReducer";
+import IndexComponent from './containers/IndexContainer';
 
-const IndexPage: React.FC = () => {
-  return (
-    <div>
-      <Header />
-      <Content content="hello world" />
-      <Footer />
-    </div>
-  )
-}
+const store = createStore(indexReducer)
 
-ReactDOM.render(<IndexPage />, document.getElementById('index'));
+ReactDOM.render(
+  <Provider store={store}>
+    <IndexComponent />
+  </Provider>,
+  document.getElementById('index')
+)
