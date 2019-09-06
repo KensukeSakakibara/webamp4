@@ -32726,6 +32726,165 @@ function symbolObservablePonyfill(root) {
 
 /***/ }),
 
+/***/ "./node_modules/typescript-fsa-reducers/dist/index.js":
+/*!************************************************************!*\
+  !*** ./node_modules/typescript-fsa-reducers/dist/index.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+function reducerWithInitialState(initialState) {
+    return makeReducer(initialState);
+}
+exports.reducerWithInitialState = reducerWithInitialState;
+function reducerWithoutInitialState() {
+    return makeReducer();
+}
+exports.reducerWithoutInitialState = reducerWithoutInitialState;
+function upcastingReducer() {
+    return makeReducer();
+}
+exports.upcastingReducer = upcastingReducer;
+function makeReducer(initialState) {
+    var handlersByActionType = {};
+    var reducer = getReducerFunction(initialState, handlersByActionType);
+    reducer.caseWithAction = function (actionCreator, handler) {
+        handlersByActionType[actionCreator.type] = handler;
+        return reducer;
+    };
+    reducer.case = function (actionCreator, handler) {
+        return reducer.caseWithAction(actionCreator, function (state, action) {
+            return handler(state, action.payload);
+        });
+    };
+    reducer.casesWithAction = function (actionCreators, handler) {
+        for (var _i = 0, actionCreators_1 = actionCreators; _i < actionCreators_1.length; _i++) {
+            var actionCreator = actionCreators_1[_i];
+            reducer.caseWithAction(actionCreator, handler);
+        }
+        return reducer;
+    };
+    reducer.cases = function (actionCreators, handler) {
+        return reducer.casesWithAction(actionCreators, function (state, action) {
+            return handler(state, action.payload);
+        });
+    };
+    reducer.withHandling = function (updateBuilder) { return updateBuilder(reducer); };
+    reducer.default = function (defaultHandler) {
+        return getReducerFunction(initialState, __assign({}, handlersByActionType), defaultHandler);
+    };
+    reducer.build = function () {
+        return getReducerFunction(initialState, __assign({}, handlersByActionType));
+    };
+    return reducer;
+}
+function getReducerFunction(initialState, handlersByActionType, defaultHandler) {
+    return function (state, action) {
+        if (state === void 0) { state = initialState; }
+        var handler = handlersByActionType[action.type] || defaultHandler;
+        return handler ? handler(state, action) : state;
+    };
+}
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/typescript-fsa/lib/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/typescript-fsa/lib/index.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Returns `true` if action has the same type as action creator.
+ * Defines Type Guard that lets TypeScript know `payload` type inside blocks
+ * where `isType` returned `true`.
+ *
+ * @example
+ *
+ *    const somethingHappened =
+ *      actionCreator<{foo: string}>('SOMETHING_HAPPENED');
+ *
+ *    if (isType(action, somethingHappened)) {
+ *      // action.payload has type {foo: string}
+ *    }
+ */
+function isType(action, actionCreator) {
+    return action.type === actionCreator.type;
+}
+exports.isType = isType;
+/**
+ * Creates Action Creator factory with optional prefix for action types.
+ * @param prefix Prefix to be prepended to action types as `<prefix>/<type>`.
+ * @param defaultIsError Function that detects whether action is error given the
+ *   payload. Default is `payload => payload instanceof Error`.
+ */
+function actionCreatorFactory(prefix, defaultIsError) {
+    if (defaultIsError === void 0) { defaultIsError = function (p) { return p instanceof Error; }; }
+    var actionTypes = {};
+    var base = prefix ? prefix + "/" : "";
+    function actionCreator(type, commonMeta, isError) {
+        if (isError === void 0) { isError = defaultIsError; }
+        var fullType = base + type;
+        if (true) {
+            if (actionTypes[fullType])
+                throw new Error("Duplicate action type: " + fullType);
+            actionTypes[fullType] = true;
+        }
+        return Object.assign(function (payload, meta) {
+            var action = {
+                type: fullType,
+                payload: payload,
+            };
+            if (commonMeta || meta) {
+                action.meta = Object.assign({}, commonMeta, meta);
+            }
+            if (isError && (typeof isError === 'boolean' || isError(payload))) {
+                action.error = true;
+            }
+            return action;
+        }, {
+            type: fullType,
+            toString: function () { return fullType; },
+            match: function (action) {
+                return action.type === fullType;
+            },
+        });
+    }
+    function asyncActionCreators(type, commonMeta) {
+        return {
+            type: base + type,
+            started: actionCreator(type + "_STARTED", commonMeta, false),
+            done: actionCreator(type + "_DONE", commonMeta, false),
+            failed: actionCreator(type + "_FAILED", commonMeta, true),
+        };
+    }
+    return Object.assign(actionCreator, { async: asyncActionCreators });
+}
+exports.actionCreatorFactory = actionCreatorFactory;
+exports.default = actionCreatorFactory;
+
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -32832,12 +32991,11 @@ react_dom__WEBPACK_IMPORTED_MODULE_1__["render"](react__WEBPACK_IMPORTED_MODULE_
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTodoAction", function() { return addTodoAction; });
-var addTodoAction = function (todo) {
-    return {
-        type: 'ADD_TODO',
-        payload: { todo: todo }
-    };
-};
+/* harmony import */ var typescript_fsa__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typescript-fsa */ "./node_modules/typescript-fsa/lib/index.js");
+/* harmony import */ var typescript_fsa__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typescript_fsa__WEBPACK_IMPORTED_MODULE_0__);
+
+var actionCreator = Object(typescript_fsa__WEBPACK_IMPORTED_MODULE_0__["actionCreatorFactory"])();
+var addTodoAction = actionCreator('ADD_TODO');
 
 
 /***/ }),
@@ -32856,16 +33014,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_Header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common/Header */ "./spa/src/components/common/Header.tsx");
 /* harmony import */ var _common_Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common/Footer */ "./spa/src/components/common/Footer.tsx");
 /* harmony import */ var _index_Content__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index/Content */ "./spa/src/components/index/Content.tsx");
-
-
-
-
-var IndexComponent = function () {
-    return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null,
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_common_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null),
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_index_Content__WEBPACK_IMPORTED_MODULE_3__["default"], { content: "hello world" }),
-        react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_common_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+var __extends = (undefined && undefined.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __assign = (undefined && undefined.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
+
+
+
+
+var IndexComponent = /** @class */ (function (_super) {
+    __extends(IndexComponent, _super);
+    function IndexComponent(props) {
+        return _super.call(this, props) || this;
+    }
+    IndexComponent.prototype.render = function () {
+        return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("div", null,
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_common_Header__WEBPACK_IMPORTED_MODULE_1__["default"], null),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_index_Content__WEBPACK_IMPORTED_MODULE_3__["default"], __assign({}, this.props)),
+            react__WEBPACK_IMPORTED_MODULE_0__["createElement"](_common_Footer__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+    };
+    return IndexComponent;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]));
 /* harmony default export */ __webpack_exports__["default"] = (IndexComponent);
 
 
@@ -32940,21 +33129,23 @@ var __extends = (undefined && undefined.__extends) || (function () {
     };
 })();
 
-var MyComponent = /** @class */ (function (_super) {
-    __extends(MyComponent, _super);
-    function MyComponent() {
+var IndexContent = /** @class */ (function (_super) {
+    __extends(IndexContent, _super);
+    function IndexContent() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    MyComponent.prototype.render = function () {
+    IndexContent.prototype.render = function () {
+        var _this = this;
         return (react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("article", { className: "main-content" },
             react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("section", { className: "top" },
-                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", null, this.props.content),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("h1", null),
                 react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("p", { className: "logout" },
-                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("a", { href: "/index/logout" }, "Logout")))));
+                    react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("a", { href: "/index/logout" }, "Logout")),
+                react__WEBPACK_IMPORTED_MODULE_0__["createElement"]("button", { type: "button", onClick: function (e) { return _this.props.addTodoAction("aiueo"); } }, "\u30C6\u30B9\u30C8"))));
     };
-    return MyComponent;
+    return IndexContent;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]));
-/* harmony default export */ __webpack_exports__["default"] = (MyComponent);
+/* harmony default export */ __webpack_exports__["default"] = (IndexContent);
 
 
 /***/ }),
@@ -32976,14 +33167,15 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function (state) {
     return {
-        todo: state.todo,
+        tasks: state.tasks,
     };
 };
 var mapDispatchToProps = function (dispatch) {
     return {
-        addTodo: function (todo) { return dispatch(_actions_IndexAction__WEBPACK_IMPORTED_MODULE_1__["addTodoAction"](todo)); },
+        addTodoAction: function (todo) { return dispatch(_actions_IndexAction__WEBPACK_IMPORTED_MODULE_1__["addTodoAction"](todo)); },
     };
 };
+// コネクト
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_IndexComponent__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 
@@ -32999,17 +33191,32 @@ var mapDispatchToProps = function (dispatch) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "indexReducer", function() { return indexReducer; });
-var indexReducer = function (state, action) {
-    switch (action.type) {
-        case 'ADD_TODO':
-            var todo = action.payload.todo;
-            var newState = Object.assign({}, state);
-            newState.todoList.push(todo);
-            return newState;
-        default:
-            return state;
-    }
+/* harmony import */ var typescript_fsa_reducers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! typescript-fsa-reducers */ "./node_modules/typescript-fsa-reducers/dist/index.js");
+/* harmony import */ var typescript_fsa_reducers__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(typescript_fsa_reducers__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_IndexAction__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/IndexAction */ "./spa/src/actions/IndexAction.tsx");
+
+
+// Stateの初期値
+var initialTasks = {
+    tasks: [{
+            id: 1,
+            text: 'initial task',
+            done: false,
+        }],
 };
+var idCounter = 1;
+// Reducerの処理
+var indexReducer = Object(typescript_fsa_reducers__WEBPACK_IMPORTED_MODULE_0__["reducerWithInitialState"])(initialTasks)
+    .case(_actions_IndexAction__WEBPACK_IMPORTED_MODULE_1__["addTodoAction"], function (state, payload) {
+    var newState = Object.assign({}, state);
+    newState.tasks.push({
+        id: ++idCounter,
+        text: payload,
+        done: false
+    });
+    console.log(newState);
+    return newState;
+});
 
 
 /***/ })

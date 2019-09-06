@@ -1,6 +1,5 @@
-export const addTodoAction = (todo: string) => {
-  return { 
-    type: 'ADD_TODO',
-    payload: { todo: todo }
-  }
-}
+import { actionCreatorFactory } from 'typescript-fsa';
+const actionCreator = actionCreatorFactory();
+
+export const addTodoAction = actionCreator<string>('ADD_TODO');
+

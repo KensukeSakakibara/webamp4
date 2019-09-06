@@ -1,17 +1,26 @@
+import { reducerWithInitialState } from 'typescript-fsa-reducers'
+import * as indexActions from '../actions/IndexAction'
+import * as indexContainer from '../containers/IndexContainer'
 
-interface initialState {
-  todoList: string[]
-}
+// Stateの初期値
+const initialTasks: indexContainer.IndexStateInterface = {
+  tasks: [{
+    id: 1,
+    text: 'initial task',
+    done: false,
+  }],
+};
 
-export const indexReducer = (state: initialState, action: any) => {
-  switch (action.type) {
-    case 'ADD_TODO':
-      const todo: string = action.payload.todo;
-      const newState = Object.assign({}, state);
-      newState.todoList.push(todo);
-      return newState;
+let idCounter: number = 1;
 
-    default:
-      return state;
-  }
-}
+// Reducerの処理
+export const indexReducer = reducerWithInitialState(initialTasks)
+  .case(indexActions.addTodoAction, (state: indexContainer.IndexStateInterface, payload: string) => {
+    const newState = Object.assign({}, state)
+    newState.tasks.push({
+      id: ++idCounter,
+      text: payload,
+      done: false
+    })
+    return newState
+  })
