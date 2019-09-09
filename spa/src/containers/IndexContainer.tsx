@@ -1,18 +1,18 @@
-import { Dispatch } from 'redux';
+import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { Action } from 'typescript-fsa';
+import { Action } from 'typescript-fsa'
 import * as indexAction from '../actions/IndexAction'
 import IndexComponent from '../components/IndexComponent'
 
 // ステートの定義
 interface TaskInterface {
-  id: number;
-  text: string;
-  done: boolean;
+  id: number,
+  text: string,
+  done: boolean,
 }
 
 export interface IndexStateInterface {
-  tasks: TaskInterface[];
+  tasks: TaskInterface[],
 }
 
 const mapStateToProps = (state: IndexStateInterface) => {
@@ -23,12 +23,14 @@ const mapStateToProps = (state: IndexStateInterface) => {
 
 // アクションの定義
 interface IndexActionInterface {
-  addTodoAction: (v: string) => Action<string>;
+  addTodoAction: (v: string) => Action<string>,
+  fetchUserAction: (v: number) => Action<number>,
 }
 
-const mapDispatchToProps = (dispatch: Dispatch<Action<string>>) => {
+const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
     addTodoAction: (todo: string) => dispatch(indexAction.addTodoAction(todo)),
+    fetchUserAction: (userId: number) => dispatch(indexAction.fetchUserAction(userId)),
   }
 }
 

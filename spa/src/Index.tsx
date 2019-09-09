@@ -1,11 +1,23 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { indexReducer } from "./reducers/IndexReducer";
-import IndexComponent from './containers/IndexContainer';
+import createSagaMiddleware from "redux-saga"
+import { indexReducer } from "./reducers/IndexReducer"
+import indexSaga from "./sagas/IndexSaga"
+import IndexComponent from './containers/IndexContainer'
 
-const store = createStore(indexReducer)
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware()
+
+// ストアの作成
+const store = createStore(
+  indexReducer,
+  applyMiddleware(sagaMiddleware)
+)
+
+// Sagaを走らせる
+sagaMiddleware.run(indexSaga)
 
 ReactDOM.render(
   <Provider store={store}>

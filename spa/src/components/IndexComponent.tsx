@@ -15,6 +15,7 @@ class IndexComponent extends React.Component<IndexProps> {
         <CommonHeader />
         <IndexContent {...this.props} />
         <CommonFooter />
+        <button type="button" onClick={(e) => this.props.fetchUserAction(1)}>Saga Test</button>
       </div>
     )
   }

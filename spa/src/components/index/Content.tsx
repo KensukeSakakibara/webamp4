@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from 'react'
 import { IndexProps } from '../../containers/IndexContainer'
 
 class IndexContent extends React.Component<IndexProps> {

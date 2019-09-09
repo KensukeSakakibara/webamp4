@@ -11,7 +11,7 @@ const initialTasks: indexContainer.IndexStateInterface = {
   }],
 };
 
-let idCounter: number = 1;
+let idCounter: number = 1
 
 // Reducerの処理
 export const indexReducer = reducerWithInitialState(initialTasks)
