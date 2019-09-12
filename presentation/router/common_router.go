@@ -1,6 +1,6 @@
 /*
 common_router.go
-@package github.com/KensukeSakakibara/webamp4/interfaces/app/router
+@package github.com/KensukeSakakibara/webamp4/presentation/router
 @author Kensuke Sakakibara
 @since 2019.09.02
 @copyright Copyright (c) 2019 Kensuke Sakakibara

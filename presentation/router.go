@@ -1,14 +1,15 @@
 /*
 router.go
-@package github.com/KensukeSakakibara/webamp4/interfaces/app/router
+@package github.com/KensukeSakakibara/webamp4/presentation
 @author Kensuke Sakakibara
 @since 2019.08.28
 @copyright Copyright (c) 2019 Kensuke Sakakibara
 @note Ginを利用してWEBのルーティングを行います。usecaseと表示する画面を結びつけます。
 */
-package router
+package presentation
 
 import (
+	"github.com/KensukeSakakibara/webamp4/presentation/router"
 	"github.com/KensukeSakakibara/webamp4/infrastructure/config"
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -20,18 +21,21 @@ type RouterInterface interface {
 }
 
 type Router struct {
-	config      *config.Config
-	store       *sessions.RedisStore
-	indexRouter IndexRouterInterface
+	config         *config.Config
+	store          *sessions.RedisStore
+	appRouter router.AppRouterInterface
+	apiRouter router.ApiRouterInterface
 }
 
 // コンストラクタ
 func NewRouter(configInstance *config.Config, redisStore *sessions.RedisStore,
-	indexRouterInterface IndexRouterInterface) RouterInterface {
+	appRouterInterface router.AppRouterInterface,
+	apiRouterInterface router.ApiRouterInterface) RouterInterface {
 	return &Router{
-		config:      configInstance,
-		store:       redisStore,
-		indexRouter: indexRouterInterface,
+		config:         configInstance,
+		store:          redisStore,
+		appRouter: appRouterInterface,
+		apiRouter: apiRouterInterface,
 	}
 }
 
@@ -46,15 +50,16 @@ func (this *Router) Run() {
 	router.Use(sessions.Sessions(this.config.App.SessionName, *this.store))
 
 	// ルーティング
-	defaultRoot := router.Group("/")
+	appRoot := router.Group("/app")
 	{
-		defaultRoot.GET("/", this.indexRouter.Index)
-		defaultRoot.POST("/", this.indexRouter.Index)
+		appRoot.GET("/", this.appRouter.Index)
+		appRoot.POST("/", this.appRouter.Index)
+		appRoot.GET("/index/logout", this.appRouter.Logout)
 	}
 
-	index := router.Group("/index")
+	apiRoot := router.Group("/api")
 	{
-		index.GET("/logout", this.indexRouter.Logout)
+		apiRoot.GET("/users/:id", this.apiRouter.Users)
 	}
 
 	router.Run(":" + this.config.App.ApplicationPort)

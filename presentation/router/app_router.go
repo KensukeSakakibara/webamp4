@@ -1,6 +1,6 @@
 /*
-index_router.go
-@package github.com/KensukeSakakibara/webamp4/interfaces/app/router
+app_router.go
+@package github.com/KensukeSakakibara/webamp4/presentation/router
 @author Kensuke Sakakibara
 @since 2019.08.30
 @copyright Copyright (c) 2019 Kensuke Sakakibara
@@ -14,30 +14,30 @@ import (
 )
 
 // インターフェイス定義
-type IndexRouterInterface interface {
+type AppRouterInterface interface {
 	Index(*gin.Context)
 	Login(*gin.Context)
 	Logout(*gin.Context)
 }
 
-type IndexRouter struct {
-	commonRouter CommonRouterInterface
-	usecase      usecase.UsecaseInterface
-	indexUsecase usecase.IndexUsecaseInterface
+type AppRouter struct {
+	commonRouter    CommonRouterInterface
+	usecase         usecase.UsecaseInterface
+	appIndexUsecase usecase.AppIndexUsecaseInterface
 }
 
 // コンストラクタ
-func NewIndexRouter(commonRouterInterface CommonRouterInterface, usecaseInterface usecase.UsecaseInterface,
-	indexUsecaseInterface usecase.IndexUsecaseInterface) IndexRouterInterface {
-	return &IndexRouter{
-		commonRouter: commonRouterInterface,
-		usecase:      usecaseInterface,
-		indexUsecase: indexUsecaseInterface,
+func NewAppRouter(commonRouterInterface CommonRouterInterface, usecaseInterface usecase.UsecaseInterface,
+	appIndexUsecaseInterface usecase.AppIndexUsecaseInterface) AppRouterInterface {
+	return &AppRouter{
+		commonRouter:    commonRouterInterface,
+		usecase:         usecaseInterface,
+		appIndexUsecase: appIndexUsecaseInterface,
 	}
 }
 
 // トップ表示
-func (this *IndexRouter) Index(ctx *gin.Context) {
+func (this *AppRouter) Index(ctx *gin.Context) {
 	loginFlg, err := this.usecase.SessionLogin(ctx)
 	if err != nil {
 		this.commonRouter.ShowError(ctx, err)
@@ -50,7 +50,7 @@ func (this *IndexRouter) Index(ctx *gin.Context) {
 		return
 	}
 
-	data, err := this.indexUsecase.IndexAction(ctx)
+	data, err := this.appIndexUsecase.IndexAction(ctx)
 	if err != nil {
 		this.commonRouter.ShowError(ctx, err)
 		return
@@ -60,8 +60,8 @@ func (this *IndexRouter) Index(ctx *gin.Context) {
 }
 
 // ログイン表示
-func (this *IndexRouter) Login(ctx *gin.Context) {
-	loginFlg, data, err := this.indexUsecase.LoginAction(ctx)
+func (this *AppRouter) Login(ctx *gin.Context) {
+	loginFlg, data, err := this.appIndexUsecase.LoginAction(ctx)
 	if err != nil {
 		this.commonRouter.ShowError(ctx, err)
 		return
@@ -75,7 +75,7 @@ func (this *IndexRouter) Login(ctx *gin.Context) {
 }
 
 // ログアウト
-func (this *IndexRouter) Logout(ctx *gin.Context) {
-	this.indexUsecase.LogoutAction(ctx)
+func (this *AppRouter) Logout(ctx *gin.Context) {
+	this.appIndexUsecase.LogoutAction(ctx)
 	this.commonRouter.Redirect(ctx, "/")
 }

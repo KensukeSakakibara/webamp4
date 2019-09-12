@@ -15,22 +15,22 @@ import (
 	"github.com/KensukeSakakibara/webamp4/infrastructure/config"
 	"github.com/KensukeSakakibara/webamp4/infrastructure/persistence/session"
 	"github.com/KensukeSakakibara/webamp4/infrastructure/persistence/table"
-	"github.com/KensukeSakakibara/webamp4/presentation/app"
-	"github.com/KensukeSakakibara/webamp4/presentation/app/router"
+	"github.com/KensukeSakakibara/webamp4/presentation"
+	"github.com/KensukeSakakibara/webamp4/presentation/router"
 	"github.com/gin-gonic/contrib/sessions"
 )
 
 // Presentation layer
-func DiMigration() app.MigrationInterface {
-	return app.NewMigration(DiTable())
+func DiMigration() presentation.MigrationInterface {
+	return presentation.NewMigration(DiTable())
 }
 
-func DiInit() app.InitInterface {
-	return app.NewInit(DiConfig(), DiUserModel())
+func DiInit() presentation.InitInterface {
+	return presentation.NewInit(DiConfig(), DiUserModel())
 }
 
-func DiRouter() router.RouterInterface {
-	return router.NewRouter(DiConfig(), DiRedisStore(), DiIndexRouter())
+func DiRouter() presentation.RouterInterface {
+	return presentation.NewRouter(DiConfig(), DiRedisStore(), DiAppRouter(), DiApiRouter())
 }
 
 const REDIS_MAX_NUM = 10 // タイムアウトの秒数
@@ -47,8 +47,12 @@ func DiCommonRouter() router.CommonRouterInterface {
 	return router.NewCommonRouter(DiTableRepository())
 }
 
-func DiIndexRouter() router.IndexRouterInterface {
-	return router.NewIndexRouter(DiCommonRouter(), DiUsecase(), DiIndexUsecase())
+func DiAppRouter() router.AppRouterInterface {
+	return router.NewAppRouter(DiCommonRouter(), DiUsecase(), DiAppIndexUsecase())
+}
+
+func DiApiRouter() router.ApiRouterInterface {
+	return router.NewApiRouter(DiCommonRouter(), DiApiUsersUsecase())
 }
 
 // Application layer
@@ -56,8 +60,12 @@ func DiUsecase() usecase.UsecaseInterface {
 	return usecase.NewUsecase(DiSessionRepository(), DiUserModel())
 }
 
-func DiIndexUsecase() usecase.IndexUsecaseInterface {
-	return usecase.NewIndexUsecase(DiSessionRepository(), DiUserModel())
+func DiAppIndexUsecase() usecase.AppIndexUsecaseInterface {
+	return usecase.NewAppIndexUsecase(DiSessionRepository(), DiUserModel())
+}
+
+func DiApiUsersUsecase() usecase.ApiUsersUsecaseInterface {
+	return usecase.NewApiUsersUsecase(DiSessionRepository(), DiUserModel())
 }
 
 // Domain layer

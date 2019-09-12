@@ -1,13 +1,13 @@
 /*
 migration.go
-@package github.com/KensukeSakakibara/webamp4/interfaces/app
+@package github.com/KensukeSakakibara/webamp4/presentation
 @author Kensuke Sakakibara
 @since 2019.08.28
 @copyright Copyright (c) 2019 Kensuke Sakakibara
 @note 起動時にGORMを利用してDBのマイグレーションを行います。
 各テーブルの定義をinfrastructure/persistence/table以下で行うため例外的にtableに依存しています。
 */
-package app
+package presentation
 
 import (
 	"github.com/KensukeSakakibara/webamp4/infrastructure/persistence/table"

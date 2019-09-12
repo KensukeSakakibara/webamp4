@@ -25,28 +25,28 @@ type LoginData struct {
 }
 
 // インターフェイス定義
-type IndexUsecaseInterface interface {
+type AppIndexUsecaseInterface interface {
 	IndexAction(*gin.Context) (*IndexData, error)
 	LoginAction(*gin.Context) (bool, *LoginData, error)
 	LogoutAction(*gin.Context)
 }
 
-type IndexUsecase struct {
+type AppIndexUsecase struct {
 	sessionRepository repository.SessionRepositoryInterface
 	userModel         model.UserModelInterface
 }
 
 // コンストラクタ
-func NewIndexUsecase(sessionRepositoryInterface repository.SessionRepositoryInterface,
-	userModelInterface model.UserModelInterface) IndexUsecaseInterface {
-	return &IndexUsecase{
+func NewAppIndexUsecase(sessionRepositoryInterface repository.SessionRepositoryInterface,
+	userModelInterface model.UserModelInterface) AppIndexUsecaseInterface {
+	return &AppIndexUsecase{
 		sessionRepository: sessionRepositoryInterface,
 		userModel:         userModelInterface,
 	}
 }
 
 // トップ
-func (this *IndexUsecase) IndexAction(ctx *gin.Context) (*IndexData, error) {
+func (this *AppIndexUsecase) IndexAction(ctx *gin.Context) (*IndexData, error) {
 	user, err := this.userModel.FetchOperatorByEmail(this.sessionRepository.GetEmail(ctx))
 	if err != nil {
 		return nil, err
@@ -55,7 +55,7 @@ func (this *IndexUsecase) IndexAction(ctx *gin.Context) (*IndexData, error) {
 }
 
 // ログイン
-func (this *IndexUsecase) LoginAction(ctx *gin.Context) (bool, *LoginData, error) {
+func (this *AppIndexUsecase) LoginAction(ctx *gin.Context) (bool, *LoginData, error) {
 	// パラメータを取り出す
 	email := ctx.PostForm("email")
 	password := ctx.PostForm("password")
@@ -86,7 +86,7 @@ func (this *IndexUsecase) LoginAction(ctx *gin.Context) (bool, *LoginData, error
 }
 
 // ログアウトを実行する
-func (this *IndexUsecase) LogoutAction(ctx *gin.Context) {
+func (this *AppIndexUsecase) LogoutAction(ctx *gin.Context) {
 	// セッションをクリア
 	this.sessionRepository.Clear(ctx)
 }

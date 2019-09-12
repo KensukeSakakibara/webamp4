@@ -1,12 +1,12 @@
 /*
 init.go
-@package github.com/KensukeSakakibara/webamp4/interfaces/app
+@package github.com/KensukeSakakibara/webamp4/presentation
 @author Kensuke Sakakibara
 @since 2019.08.28
 @copyright Copyright (c) 2019 Kensuke Sakakibara
 @note 起動時にアプリケーションの初期化を行います。
 */
-package app
+package presentation
 
 import (
 	"github.com/KensukeSakakibara/webamp4/domain/model"
